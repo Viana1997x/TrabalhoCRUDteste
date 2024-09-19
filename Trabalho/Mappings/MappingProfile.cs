@@ -1,18 +1,20 @@
-﻿using Dapper;
-using Dapper.Contrib;
-using System.Data.SQLite;
-using AutoMapper;
+﻿using AutoMapper;
 using Trabalho.Models;
 
-namespace Trabalho.Mappings
+namespace Trabalho
 {
     public class MappingProfile : Profile
     {
         public MappingProfile()
         {
-            CreateMap<ClienteDTO, Cliente>();
-            CreateMap<MedicoDTO, Medico>();
-            CreateMap<ConsultaDTO, Consulta>();
+            // Mapeamento entre Cliente e ClienteDTO
+            CreateMap<Cliente, ClienteDTO>().ReverseMap();
+
+            // Mapeamento entre Medico e MedicoDTO
+            CreateMap<Medico, MedicoDTO>().ReverseMap();
+
+            // Mapeamento entre Consulta e ConsultaDTO
+            CreateMap<Consulta, ConsultaDTO>().ReverseMap();
         }
     }
 }
