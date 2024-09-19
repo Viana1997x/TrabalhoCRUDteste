@@ -51,12 +51,13 @@ namespace Trabalho.Repositories
 
         public void Delete(int id)
         {
-            var medico = _dbConnection.Get<Medico>(id);
-            if (medico == null)
+            var query = "DELETE FROM Medicos WHERE Id = @Id";
+            var rowsAffected = _dbConnection.Execute(query, new { Id = id });
+
+            if (rowsAffected == 0)
             {
                 throw new KeyNotFoundException("Medico não encontrado.");
             }
-            _dbConnection.Delete(medico);
         }
     }
 }
